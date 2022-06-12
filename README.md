@@ -21,3 +21,11 @@ wget iang.io/resources/trldc/mimic_longformer.zip
 wget iang.io/resources/trldc/ecthr_longformer.zip
 
 ~~~
+or using
+~~~
+from transformers import AutoConfig, AutoTokenizer, AutoModel
+
+config = AutoConfig.from_pretrained("xdai/mimic_longformer_base") # or xdai/mimic_roberta_base
+tokenizer = AutoTokenizer.from_pretrained("xdai/mimic_longformer_base")
+model = AutoModel.from_pretrained("xdai/mimic_longformer_base") 
+~~~
