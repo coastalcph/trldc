@@ -56,7 +56,8 @@ class Model(RobertaPreTrainedModel):
         encoder_outputs = encoder_outputs[:, :, 0]
 
         # Infer real segments, i.e., mask paddings
-        seg_mask = (torch.sum(input_ids, 2) != 0).to(input_ids.dtype)
+        # seg_mask = (torch.sum(input_ids, 2) != max_segment_length).to(input_ids.dtype)
+        seg_mask = (torch.sum(attention_mask, 2) != 0).to(input_ids.dtype)
         # Infer and collect segment positional embeddings
         seg_positions = torch.arange(1, n_segments + 1).to(input_ids.device) * seg_mask
         # Add segment positional embeddings to segment inputs
